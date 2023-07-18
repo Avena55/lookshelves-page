@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Card, Backdrop, CircularProgress, Snackbar} from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import RegisterForm from "../../components/RegisterForm";
-import LoginForm from "../../components/LoginForm";
+import './styles.css';
+import RegisterBookForm from "../../components/RegisterBookForm";
+
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -17,7 +18,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     padding: '42px 60px 60px 60px',
 }
 
-const RegisterLogin = () => {    
+const RegisterBook = () => {    
     const [requestError, setRequestError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -28,9 +29,7 @@ const RegisterLogin = () => {
     return (    
         <div className="container">           
             <Card sx={cardStyle}>
-                <RegisterForm setRequestError={setRequestError} setIsLoading={setIsLoading} />
-                <hr />
-                <LoginForm setRequestError={setRequestError} setIsLoading={setIsLoading}/>                      
+                <RegisterBookForm setRequestError={setRequestError} setIsLoading={setIsLoading} />                     
             </Card>
             <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
                 <CircularProgress color="inherit" />
@@ -44,4 +43,4 @@ const RegisterLogin = () => {
     )
 }
 
-export default RegisterLogin;
+export default RegisterBook;

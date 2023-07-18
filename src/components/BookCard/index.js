@@ -9,10 +9,10 @@ import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './styles.css';
 
-export default function BookCard( bookImg, bookTitle, comment ) {
+export default function BookCard( bookImg, bookTitle, comment, bookId ) {
   return (
-    <Card className='card-box' sx={{ maxWidth: 345 }} style={{background: `url(${bookImg}) center center / cover no-repeat`}}>
-      <CardMedia sx={{ height: 140 }}/>
+    <Card key={bookId} className='card-box' sx={{ maxWidth: 345 }} style={{background: `url(${bookImg}) center center / cover no-repeat`}}>
+      <CardMedia component='div' sx={{ height: 140 }}/>
       <CardContent className='content-box' style={{background: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(224, 224, 224, 0.4))`, paddingBottom: 0}}>
         <Typography gutterBottom variant="h5" component="div">
           {bookTitle}

@@ -21,7 +21,7 @@ const titleStyle = {
 const Header = () => {
     return (
         <Card sx={headerStyle}>
-        <img src={logo} alt="lookshelf logo" />
+        <img className='logo' src={logo} alt="lookshelf logo" />
         <Typography sx={titleStyle} >.lookshelf</Typography>
         </Card> 
     ) 

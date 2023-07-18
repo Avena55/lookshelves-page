@@ -67,7 +67,7 @@ const Profile = () => {
             <button onClick={() => navigate('/registrarlivro')}>Adicionar Livro</button>
             <div className="book-grid">
                 {books.map(book => (
-                    BookCard(book.cover, book.title, book.comment)
+                    BookCard(book.cover, book.title, book.comment, book.id)
                 ))}
             </div>
         </div>
