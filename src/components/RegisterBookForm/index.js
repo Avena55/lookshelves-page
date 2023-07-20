@@ -28,9 +28,9 @@ const buttonStyle = {
     }
 }
 
-const RegisterBookForm = ({ setRequestError, setIsLoading }) => {
+const RegisterBookForm = ({ setRequestMessage, setIsLoading }) => {
     const { token } = useContext(AuthContext);
-    const { handleSubmit, register, setError, formState: { errors }, watch, setValue, formState } = useForm();
+    const { handleSubmit, register, formState: { errors }, watch, setValue } = useForm();
     const navigate = useNavigate();
     let isbnWatch = watch('isbn', '');
     const [imgUrl, setImgUrl] = useState('https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png');
@@ -60,7 +60,7 @@ const RegisterBookForm = ({ setRequestError, setIsLoading }) => {
           setImgUrl(`https://covers.openlibrary.org/b/isbn/${isbnWatch}-L.jpg`);
     
         } catch (error) {
-          setRequestError('Servidor Indisponível. Registro Manual Autorizado.')
+          setRequestMessage('Servidor Indisponível. Registro Manual Autorizado.')
           setIsLoading(false);
           setReadOnlyTitle(false);          
           
@@ -91,7 +91,7 @@ const RegisterBookForm = ({ setRequestError, setIsLoading }) => {
         
         const responseData = await response.json();
 
-        setRequestError(responseData);
+        setRequestMessage(responseData);
     }
     
 
@@ -114,7 +114,7 @@ const RegisterBookForm = ({ setRequestError, setIsLoading }) => {
                             inputProps={{ maxLength: 140 }}
                             {...register('comment', { required: false })} error={!!errors.comment}
                         />
-                        <TextField sx={textFieldStyle} type='number' inputProps={{ min: 0, max: 10 }} placeholder='De 0 a 10' label='Nota'variant="standard" {...register('rating', { required: true })} error={!!errors.rating}/>                       
+                        <TextField sx={textFieldStyle} type='number' inputProps={{ min: 0, max: 5 }} placeholder='De 0 a 5 (intervalo de 0.5)' label='Nota'variant="standard" {...register('rating', { required: true })} error={!!errors.rating}/>                       
                     </div>
                 <Button type="submit" sx={buttonStyle} variant="contained">Cadastrar Livro</Button>
             </form>

@@ -18,26 +18,27 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 }
 
 const RegisterLogin = () => {    
-    const [requestError, setRequestError] = useState(false);
+    const [requestMessage, setRequestMessage] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [severity, setSeverity] = useState('error');
 
     const handleClose = () => {
-        setRequestError('');
+        setRequestMessage('');
     }
 
     return (    
         <div className="container">           
             <Card sx={cardStyle}>
-                <RegisterForm setRequestError={setRequestError} setIsLoading={setIsLoading} />
+                <RegisterForm setSeverity={setSeverity} setRequestMessage={setRequestMessage} setIsLoading={setIsLoading} />
                 <hr />
-                <LoginForm setRequestError={setRequestError} setIsLoading={setIsLoading}/>                      
+                <LoginForm setRequestMessage={setRequestMessage} setIsLoading={setIsLoading}/>                      
             </Card>
             <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Snackbar open={!!requestError} autoHideDuration={6000} anchorOrigin={{vertical: "bottom", horizontal: "center"}} onClose={handleClose}>
-                <Alert severity="error" sx={{ width: '100%' }} onClose={handleClose}>
-                            {requestError}
+            <Snackbar open={!!requestMessage} autoHideDuration={6000} anchorOrigin={{vertical: "bottom", horizontal: "center"}} onClose={handleClose}>
+                <Alert severity={severity} sx={{ width: '100%' }} onClose={handleClose}>
+                            {requestMessage}
                 </Alert>
             </Snackbar>        
         </div>                 

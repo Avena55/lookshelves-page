@@ -19,24 +19,24 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 }
 
 const RegisterBook = () => {    
-    const [requestError, setRequestError] = useState(false);
+    const [requestMessage, setRequestMessage] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleClose = () => {
-        setRequestError('');
+        setRequestMessage('');
     }
 
     return (    
         <div className="container">           
             <Card sx={cardStyle}>
-                <RegisterBookForm setRequestError={setRequestError} setIsLoading={setIsLoading} />                     
+                <RegisterBookForm setRequestMessage={setRequestMessage} setIsLoading={setIsLoading} />                     
             </Card>
             <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Snackbar open={!!requestError} autoHideDuration={6000} anchorOrigin={{vertical: "bottom", horizontal: "center"}} onClose={handleClose}>
+            <Snackbar open={!!requestMessage} autoHideDuration={6000} anchorOrigin={{vertical: "bottom", horizontal: "center"}} onClose={handleClose}>
                 <Alert severity="error" sx={{ width: '100%' }} onClose={handleClose}>
-                            {requestError}
+                            {requestMessage}
                 </Alert>
             </Snackbar>        
         </div>                 

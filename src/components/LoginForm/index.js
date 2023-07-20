@@ -29,7 +29,7 @@ const buttonStyle = {
     }
 }
 
-const LoginForm = ({ setRequestError, setIsLoading }) => {
+const LoginForm = ({ setRequestMessage, setIsLoading }) => {
     const { handleSubmit, register, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { setToken } = useContext(AuthContext);
@@ -60,7 +60,7 @@ const LoginForm = ({ setRequestError, setIsLoading }) => {
             return;
         }        
 
-        setRequestError(responseData);
+        setRequestMessage(responseData);
     }
     
 

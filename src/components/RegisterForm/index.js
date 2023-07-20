@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, TextField, Button } from '@mui/material';
 import PasswordInput from "../../components/Password";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom'
 
 
 const textFieldStyle = {
@@ -28,9 +27,15 @@ const buttonStyle = {
     }
 }
 
-const RegisterForm = ({ setRequestError, setIsLoading }) => {
-    const { handleSubmit, register, setError, formState: { errors } } = useForm();
-    const navigate = useNavigate();    
+const RegisterForm = ({ setRequestMessage, setIsLoading, setSeverity }) => {
+    const { handleSubmit, register, setError, formState: { errors }, reset} = useForm();
+    const [ isSubmitSucessful, setIsSubmitSuccessful ] = useState(false);
+  
+    useEffect(() => {
+        if (isSubmitSucessful) reset();
+
+        setIsSubmitSuccessful(false);
+    }, [ isSubmitSucessful, reset ]);
     
  
     const registerInfo = async (data) => {
@@ -55,14 +60,18 @@ const RegisterForm = ({ setRequestError, setIsLoading }) => {
 
         setIsLoading(false);
 
-        if (response.ok) {
-            navigate('/perfil');
+        const responseData = await response.json();
+
+        if (response.ok) {            
+            setSeverity('success');
+            setRequestMessage(responseData);
+            setIsSubmitSuccessful(true);
+            
             return;
         }
         
-        const responseData = await response.json();
-
-        setRequestError(responseData);
+        setRequestMessage(responseData);
+        setSeverity('error');
     }
     
 
