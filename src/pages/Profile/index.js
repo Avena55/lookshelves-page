@@ -59,7 +59,8 @@ const Profile = () => {
             });        
         }
 
-        setBooks(formattedBooks);
+        const sortedBooks = formattedBooks.sort((a, b) => (a.id > b.id) ? 1 : -1);
+        setBooks(sortedBooks);
 
     }
 
@@ -94,7 +95,7 @@ const Profile = () => {
             <button onClick={() => navigate('/registrarlivro')}>Adicionar Livro</button>
             <div className="book-grid">
                 {books.map(book => (
-                    BookCard(book.cover, book.title, book.comment, book.id, handleDeleteBook, token, book.rating, open, handleClose, handleClickOpen, bookToBeDeleted)
+                    BookCard(book.cover, book.title, book.comment, book.id, handleDeleteBook, token, book.rating, open, handleClose, handleClickOpen, bookToBeDeleted, navigate)
                 ))}
             </div>
         </div>

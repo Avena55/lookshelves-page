@@ -22,7 +22,7 @@ const StyledRating = styled(Rating)({
   },
 });
 
-export default function BookCard( bookImg, bookTitle, comment, bookId, handleDeleteBook, token, bookRating, open, handleClose, handleClickOpen, bookToBeDeleted ) {
+export default function BookCard( bookImg, bookTitle, comment, bookId, handleDeleteBook, token, bookRating, open, handleClose, handleClickOpen, bookToBeDeleted, navigate ) {
   return (
     <Card key={bookId} className='card-box' sx={{ maxWidth: 345 }} style={{background: `url(${bookImg}) center center / cover no-repeat`}}>
       <CardMedia component='div' sx={{ minHeight: 80 }}/>
@@ -34,13 +34,13 @@ export default function BookCard( bookImg, bookTitle, comment, bookId, handleDel
           {comment}
         </Typography>
         <Stack direction='row' spacing={0}>
-          <StyledRating defaultValue={Number(bookRating)} precision={0.5} readOnly max={5} />
+          <StyledRating defaultValue={Number(bookRating/2)} precision={0.5} readOnly max={5} />
           <Typography variant="caption">
           {bookRating}
         </Typography>
         </Stack>
         <Stack direction="row" spacing={27}>
-            <Button sx={{color: 'rgba(50, 50, 50, 1)'}} size="small">Editar</Button>
+            <Button sx={{color: 'rgba(50, 50, 50, 1)'}} size="small" onClick={() => navigate(`/editarlivro/${bookId}`)} >Editar</Button>
             <IconButton onClick={() => handleClickOpen(bookId)}>
                 <DeleteIcon />
             </IconButton>

@@ -114,7 +114,7 @@ const RegisterBookForm = ({ setRequestMessage, setIsLoading }) => {
                             inputProps={{ maxLength: 140 }}
                             {...register('comment', { required: false })} error={!!errors.comment}
                         />
-                        <TextField sx={textFieldStyle} type='number' inputProps={{ min: 0, max: 5 }} placeholder='De 0 a 5 (intervalo de 0.5)' label='Nota'variant="standard" {...register('rating', { required: true })} error={!!errors.rating}/>                       
+                        <TextField sx={textFieldStyle} type='number' inputProps={{ min: 0, max: 10 }} placeholder='De 0 a 10' label='Nota'variant="standard" {...register('rating', { required: true })} error={!!errors.rating}/>                       
                     </div>
                 <Button type="submit" sx={buttonStyle} variant="contained">Cadastrar Livro</Button>
             </form>
